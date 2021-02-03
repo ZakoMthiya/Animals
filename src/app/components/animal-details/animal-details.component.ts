@@ -11,6 +11,8 @@ export class AnimalDetailsComponent implements OnInit {
 
   currentAnimal = null;
   feedback = '';
+  editted = false;
+  deleted = false;
 
   constructor(
     private animalsService: AnimalsService,
@@ -27,37 +29,20 @@ export class AnimalDetailsComponent implements OnInit {
       .subscribe(
         data => {
           this.currentAnimal = data;
-          console.log(data);
+          console.log(this.currentAnimal);
         },
         error => {
           console.log(error);
         });
   }
 
-  // updatePublished(status): void {
-  //   const data = {
-  //     title: this.currentTutorial.title,
-  //     description: this.currentTutorial.description,
-  //     published: status
-  //   };
-
-  //   this.tutorialService.update(this.currentTutorial.id, data)
-  //     .subscribe(
-  //       response => {
-  //         this.currentTutorial.published = status;
-  //         console.log(response);
-  //       },
-  //       error => {
-  //         console.log(error);
-  //       });
-  // }
-
   updateAnimal(): void {
     this.animalsService.update(this.currentAnimal.id, this.currentAnimal)
       .subscribe(
         response => {
-          console.log(response);
-          this.feedback = 'The tutorial was updated successfully!';
+          console.log('What comes back ',response);
+          this.editted = true;
+          // this.feedback = 'The tutorial was updated successfully!';
         },
         error => {
           console.log(error);
@@ -69,11 +54,15 @@ export class AnimalDetailsComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
-          this.router.navigate(['/animals']);
+          this.deleted = true;
         },
         error => {
           console.log(error);
         });
+  }
+
+  home(){
+    this.router.navigate(['/animals']);
   }
 
 }

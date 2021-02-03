@@ -1,46 +1,42 @@
-<div style="width: 400px; margin: auto;">
+<div *ngIf="!deleted">
+  <div *ngIf="!editted">
     <div *ngIf="currentAnimal" class="edit-form">
       <h4>Animal</h4>
       <form>
         <div class="form-group">
           <label for="title">Name</label>
-          <input
-            type="text"
-            class="form-control"
-            id="name"
-            [(ngModel)]="currentAnimal.title"
-            name="name"
-          />
+          <input type="text" class="form-control" id="name" [(ngModel)]="currentAnimal.name" name="name" />
         </div>
         <div class="form-group">
           <label for="description">Description</label>
-          <input
-            type="text"
-            class="form-control"
-            id="description"
-            [(ngModel)]="currentAnimal.description"
-            name="description"
-          />
+          <input type="text" class="form-control" id="description" [(ngModel)]="currentAnimal.description"
+            name="description" />
         </div>
-  
+
       </form>
-  
+
       <button class="badge badge-danger mr-2" (click)="deleteAnimal()">
         Delete
       </button>
-  
-      <button
-        type="submit"
-        class="badge badge-success"
-        (click)="updateAnimal()"
-      >
+
+      <button type="submit" class="badge badge-success" (click)="updateAnimal()">
         Update
       </button>
-      <p>{{ feedback }}</p>
+      <!-- <p>{{ feedback }}</p> -->
     </div>
-  
+
     <div *ngIf="!currentAnimal">
       <br />
       <p>Denied access to this animal...</p>
     </div>
+
   </div>
+</div>
+<div *ngIf="editted">
+  <h4>Successfully edited!</h4>
+  <button class="btn btn-success" (click)="home()">Back to list</button>
+</div>
+<div *ngIf="deleted">
+  <h4>Successfully deleted!</h4>
+  <button class="btn btn-success" (click)="home()">Back to list</button>
+</div>

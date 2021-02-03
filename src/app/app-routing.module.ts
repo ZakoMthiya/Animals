@@ -6,7 +6,7 @@ import { AnimalsListComponent } from './components/animals-list/animals-list.com
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'tutorials', pathMatch: 'full' },
+  { path: '', redirectTo: 'animals', pathMatch: 'full' },
   { path: 'animals', component: AnimalsListComponent },
   { path: 'animals/:id', component: AnimalDetailsComponent },
   { path: 'add', component: AddAnimalComponent }
@@ -14,7 +14,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
